@@ -41,3 +41,10 @@ This version is patched with shntool patch.
 %doc COPYING README
 %{_bindir}/%{name}
 
+
+
+%changelog
+* Thu Sep 22 2011 Andrey Bondrov <abondrov@mandriva.org> 3.4.1-1mdv2011.0
++ Revision: 700842
+- imported package ttaenc
+
