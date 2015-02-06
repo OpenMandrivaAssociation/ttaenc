@@ -1,6 +1,6 @@
 Name:		ttaenc
 Version:	3.4.1
-Release:	%mkrel 1
+Release:	2
 License:	GPLv2
 Summary:	The True Audio (TTA) codec lossless audio compressor
 Group:		Sound
