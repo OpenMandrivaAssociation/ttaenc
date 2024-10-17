@@ -4,7 +4,7 @@ Release:	2
 License:	GPLv2
 Summary:	The True Audio (TTA) codec lossless audio compressor
 Group:		Sound
-URL:		http://sourceforge.net/projects/tta/
+URL:		https://sourceforge.net/projects/tta/
 Source:		http://sourceforge.net/projects/tta/files/tta/ttaenc-src/%{name}-%{version}-src.tgz
 Patch0:		ttaenc-3.4.1-src-shntool.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
