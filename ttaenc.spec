@@ -29,16 +29,16 @@ This version is patched with shntool patch.
 %autosetup -n %{name}-%{version}-src -p1
 
 %build
-%make_build
+%if 0%{?arch64}
+%make_build INSDIR=%{buildroot}%{_bindir} \
+CFLAGS="-Wall -O3 -fomit-frame-pointer -funroll-loops -fforce-addr -falign-functions=4"
+%else
+%make_build INSDIR=%{buildroot}%{_bindir}
+%endif
 
 %install
 mkdir -p %{buildroot}/usr/bin/
-%if 0%{?arch64}
-%make_install INSDIR=%{buildroot}%{_bindir} \
-CFLAGS="-Wall -O3 -fomit-frame-pointer -funroll-loops -fforce-addr -falign-functions=4"
-%else
 %make_install INSDIR=%{buildroot}%{_bindir}
-%endif
 
 %files
 %{_bindir}/%{name}
