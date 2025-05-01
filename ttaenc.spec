@@ -1,13 +1,17 @@
+%global debug_package %{nil}
+
 Name:		ttaenc
 Version:	3.4.1
-Release:	2
-License:	GPLv2
-Summary:	The True Audio (TTA) codec lossless audio compressor
-Group:		Sound
-URL:		https://sourceforge.net/projects/tta/
-Source:		http://sourceforge.net/projects/tta/files/tta/ttaenc-src/%{name}-%{version}-src.tgz
+Release:	3
+License:	GPL-2.0-or-later
+Summary:	The True Audio codec lossless audio compressor
+URL:		https://tausoft.org/en/
+Group:		Sound/Utilities
+Source0:	https://sourceforge.net/projects/tta/files/tta/ttaenc-src/%{name}-%{version}-src.tgz
 Patch0:		ttaenc-3.4.1-src-shntool.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root
+
+BuildRequires:	make
+BuildRequires:	gcc-c++
 
 %description
 TTA performs lossless compression on multichannel 8,16 and 24 bits
@@ -22,29 +26,18 @@ is available at http://tta.sourceforge.net
 This version is patched with shntool patch.
 
 %prep
-%setup -q -n %{name}-%{version}-src
-%patch0 -p1
+%autosetup -n %{name}-%{version}-src -p1
 
 %build
-%make
+%make_build
 
 %install
-%__rm -rf %{buildroot}
-%__mkdir_p %{buildroot}%{_bindir}
-%__install -m 755 %{name} %{buildroot}%{_bindir}/%{name}
-
-%clean
-%{__rm} -rf %{buildroot}
+mkdir -p %{buildroot}/usr/bin/
+%make_install INSDIR=%{buildroot}%{_bindir}
 
 %files
-%defattr(-, root, root, -)
-%doc COPYING README
 %{_bindir}/%{name}
-
-
-
-%changelog
-* Thu Sep 22 2011 Andrey Bondrov <abondrov@mandriva.org> 3.4.1-1mdv2011.0
-+ Revision: 700842
-- imported package ttaenc
+%doc README
+%doc ChangeLog-%{version}
+%license COPYING
 
