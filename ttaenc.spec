@@ -2,7 +2,7 @@
 
 Name:		ttaenc
 Version:	3.4.1
-Release:	3
+Release:	4
 License:	GPL-2.0-or-later
 Summary:	The True Audio codec lossless audio compressor
 URL:		https://tausoft.org/en/
@@ -29,9 +29,8 @@ This version is patched with shntool patch.
 %autosetup -n %{name}-%{version}-src -p1
 
 %build
-%if 0%{?arch64}
-%make_build INSDIR=%{buildroot}%{_bindir} \
-CFLAGS="-Wall -O3 -fomit-frame-pointer -funroll-loops -fforce-addr -falign-functions=4"
+%ifarch aarch64
+%make_build INSDIR=%{buildroot}%{_bindir} CFLAGS="-Wall -O3 -fomit-frame-pointer -funroll-loops -fforce-addr -falign-functions=4"
 %else
 %make_build INSDIR=%{buildroot}%{_bindir}
 %endif
